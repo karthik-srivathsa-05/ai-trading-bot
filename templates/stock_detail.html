@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ symbol }} Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ symbol }} Prediction</h1>
+    <p><b>Signal:</b> {{ signal }}</p>
+    {% if chart %}
+    <h3>Price Chart:</h3>
+    <img src="{{ chart }}?v={{ random() }}" alt="Chart">
+    {% endif %}
+    <br><br>
+    <a href="{{ url_for('show_portfolio') }}">Back to Portfolio</a> 
+</body>
+</html>

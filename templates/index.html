@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Trading Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>AI Trading Bot</h1>
+    <form method="POST" action="/analyze">
+        <input type="text" name="symbol" placeholder="Enter Stock Symbol">
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <h3>Result: {{ result }}</h3>
+    {% if chart %}
+    <h3>Price Chart:</h3>
+    <img src="{{ chart }}" alt="Stock Chart">
+    {% endif %}
+    {% endif %}
+
+    <br><br>
+    <a href="{{ url_for('show_portfolio') }}">Go to Portfolio</a>
+</body>
+</html>

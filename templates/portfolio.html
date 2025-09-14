@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>My Portfolio</h1>
+
+    <form method="POST" action="/add_stock">
+        <input type="text" name="symbol" placeholder="Enter Stock Symbol">
+        <button type="submit">Add</button>
+    </form>
+
+    <ul>
+        {% for stock in portfolio %}
+        <li><a href="{{ url_for('stock_detail', symbol=stock) }}">{{ stock }}</a></li>
+        {% else %}
+        <li>No stocks in portfolio yet.</li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>
