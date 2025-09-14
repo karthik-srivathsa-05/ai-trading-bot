@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>My Portfolio</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .stock { border: 1px solid #ddd; padding: 10px; margin: 15px; display: inline-block; }
+        button { padding: 5px 10px; margin: 5px; }
+        img { border: 1px solid #ccc; margin-top: 10px; }
+    </style>
 </head>
 <body>
     <h1>My Portfolio</h1>
 
-    <form method="POST" action="/add_stock">
-        <input type="text" name="symbol" placeholder="Enter Stock Symbol">
-        <button type="submit">Add</button>
-    </form>
+    {% if portfolio %}
+        {% for stock, status in portfolio.items() %}
+            <div class="stock">
+                <h3>{{ stock }} - Status: {{ status }}</h3>
 
-    <ul>
-        {% for stock in portfolio %}
-        <li><a href="{{ url_for('stock_detail', symbol=stock) }}">{{ stock }}</a></li>
-        {% else %}
-        <li>No stocks in portfolio yet.</li>
+                {% if charts[stock] %}
+                    <img src="{{ url_for('static', filename=charts[stock]) }}" alt="{{ stock }} chart" width="400">
+                {% endif %}
+
+                <br>
+                <a href="{{ url_for('buy_stock', symbol=stock) }}"><button>Buy</button></a>
+                <a href="{{ url_for('hold_stock', symbol=stock) }}"><button>Hold</button></a>
+                <a href="{{ url_for('sell_stock', symbol=stock) }}"><button>Sell</button></a>
+            </div>
         {% endfor %}
-    </ul>
+    {% else %}
+        <p>No stocks in portfolio yet.</p>
+    {% endif %}
 
     <br>
     <a href="{{ url_for('home') }}">Back to Home</a>

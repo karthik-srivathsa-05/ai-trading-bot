@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ symbol }} Details</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{{ symbol }} Prediction</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        button { padding: 6px 12px; margin: 10px; }
+        img { border: 1px solid #ccc; margin-top: 20px; }
+    </style>
 </head>
 <body>
     <h1>{{ symbol }} Prediction</h1>
-    <p><b>Signal:</b> {{ signal }}</p>
+    <p>Signal: <b>{{ signal }}</b></p>
+
     {% if chart %}
-    <h3>Price Chart:</h3>
-    <img src="{{ chart }}?v={{ random() }}" alt="Chart">
+        <h3>Price Chart:</h3>
+        <img src="{{ url_for('static', filename=chart) }}" alt="{{ symbol }} chart" width="600">
     {% endif %}
+
+    <br>
+    <a href="{{ url_for('buy_stock', symbol=symbol) }}"><button>Buy</button></a>
+    <a href="{{ url_for('hold_stock', symbol=symbol) }}"><button>Hold</button></a>
+    <a href="{{ url_for('sell_stock', symbol=symbol) }}"><button>Sell</button></a>
+
     <br><br>
-    <a href="{{ url_for('show_portfolio') }}">Back to Portfolio</a> 
+    <a href="{{ url_for('home') }}">Back to Home</a> |
+    <a href="{{ url_for('show_portfolio') }}">Go to Portfolio</a>
 </body>
 </html>

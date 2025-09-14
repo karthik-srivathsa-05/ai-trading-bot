@@ -2,24 +2,19 @@
 <html>
 <head>
     <title>AI Trading Bot</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        form { margin: 20px; }
+        input, button { padding: 8px 12px; margin: 5px; }
+        a { margin: 10px; display: inline-block; }
+    </style>
 </head>
 <body>
     <h1>AI Trading Bot</h1>
-    <form method="POST" action="/analyze">
-        <input type="text" name="symbol" placeholder="Enter Stock Symbol">
+    <form action="/analyze" method="post">
+        <input type="text" name="symbol" placeholder="Enter Stock Symbol" required>
         <button type="submit">Analyze</button>
     </form>
-
-    {% if result %}
-    <h3>Result: {{ result }}</h3>
-    {% if chart %}
-    <h3>Price Chart:</h3>
-    <img src="{{ chart }}" alt="Stock Chart">
-    {% endif %}
-    {% endif %}
-
-    <br><br>
     <a href="{{ url_for('show_portfolio') }}">Go to Portfolio</a>
 </body>
 </html>
