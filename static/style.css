@@ -1,44 +1,58 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background: #f8f9fa;
-    color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9fb;
+  color: #333;
 }
 
-h1 {
-    color: #007bff;
+header {
+  background: #4CAF50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
 }
 
-form {
-    margin-bottom: 20px;
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }
 
-input, button {
-    padding: 8px;
-    margin: 5px;
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 button {
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  margin: 0.2rem;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-button:hover {
-    background: #0056b3;
+.buy { background: #4CAF50; color: white; }
+.sell { background: #f44336; color: white; }
+.hold { background: #2196F3; color: white; }
+
+input[type=text] {
+  padding: 0.5rem;
+  width: 60%;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
+.card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
-
-a:hover {
-    text-decoration: underline;
-}
-
-body { font-family: Arial, sans-serif; margin: 20px; }
-h1 { color: #2c3e50; }
-a { text-decoration: none; color: #2980b9; }
-button { padding: 6px 12px; }

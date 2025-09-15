@@ -3,27 +3,41 @@
 <head>
     <title>{{ symbol }} Prediction</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        button { padding: 6px 12px; margin: 10px; }
-        img { border: 1px solid #ccc; margin-top: 20px; }
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f8f9fa; }
+        h1 { color: #333; }
+        .info { margin: 15px 0; padding: 10px; background: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn { padding: 8px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
+        .buy { background: #28a745; color: #fff; }
+        .sell { background: #dc3545; color: #fff; }
+        .hold { background: #ffc107; color: #000; }
+        img { margin-top: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        a { text-decoration: none; margin-right: 15px; }
     </style>
 </head>
 <body>
     <h1>{{ symbol }} Prediction</h1>
-    <p>Signal: <b>{{ signal }}</b></p>
+
+    <div class="info">
+        <p><b>Signal:</b> {{ signal }}</p>
+        <p><b>Today's Price:</b> ${{ today_price }}</p>
+        <p><b>Predicted Price (Next Day):</b> ${{ predicted_price }}</p>
+    </div>
 
     {% if chart %}
         <h3>Price Chart:</h3>
         <img src="{{ url_for('static', filename=chart) }}" alt="{{ symbol }} chart" width="600">
+    {% else %}
+        <p>No chart available.</p>
     {% endif %}
 
-    <br>
-    <a href="{{ url_for('buy_stock', symbol=symbol) }}"><button>Buy</button></a>
-    <a href="{{ url_for('hold_stock', symbol=symbol) }}"><button>Hold</button></a>
-    <a href="{{ url_for('sell_stock', symbol=symbol) }}"><button>Sell</button></a>
+    <div style="margin-top: 20px;">
+        <a href="{{ url_for('buy_stock', symbol=symbol) }}"><button class="btn buy">Buy</button></a>
+        <a href="{{ url_for('sell_stock', symbol=symbol) }}"><button class="btn sell">Sell</button></a>
+        <a href="{{ url_for('hold_stock', symbol=symbol) }}"><button class="btn hold">Hold</button></a>
+    </div>
 
     <br><br>
-    <a href="{{ url_for('home') }}">Back to Home</a> |
-    <a href="{{ url_for('show_portfolio') }}">Go to Portfolio</a>
+    <a href="{{ url_for('show_portfolio') }}">Go to Portfolio</a> |
+    <a href="{{ url_for('home') }}">Back to Home</a>
 </body>
 </html>
